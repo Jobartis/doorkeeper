@@ -18,7 +18,10 @@ module Doorkeeper
 
     # TODO: context should be the request
     def parameters
-      context.request.parameters['redirect_uri'] = context.request.parameters['redirect_uri'].split("?")[0]
+      redirect_uri = context.request.parameters['redirect_uri']
+      if redirect_uri
+        context.request.parameters['redirect_uri'] = redirect_uri.split("?")[0]
+      end
       context.request.parameters
     end
 
